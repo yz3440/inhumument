@@ -1,0 +1,6 @@
+# Docs site toolchain. Build with:
+#   pip install -r docs/requirements.txt   (ideally in a venv or via pipx)
+#   mkdocs build --strict                  # or: mkdocs serve
+mkdocs>=1.5.0
+mkdocs-terminal>=4.6.0
+pymdown-extensions>=10.0.0

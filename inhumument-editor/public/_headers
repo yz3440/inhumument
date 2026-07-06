@@ -1,0 +1,5 @@
+# Cloudflare Pages headers. The app bundle is content-hashed by Vite so it can
+# be cached aggressively. Page data + scans are no longer hosted here — they
+# resolve from npm (humument-data / humument-images) via the jsDelivr CDN.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable

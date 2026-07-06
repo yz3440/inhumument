@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Build output (inhumument-lib/dist is tracked so the editor + npm consumers
+# resolve it without a build step)
+inhumument-editor/dist/
+.wrangler/
+
+# Docs site build
+site/
+
+# Editor / OS
+.DS_Store
+.vscode/
+.idea/
+.gstack/

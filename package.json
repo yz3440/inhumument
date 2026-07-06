@@ -1,0 +1,6 @@
+{
+  "name": "inhumument-monorepo",
+  "private": true,
+  "license": "MIT",
+  "workspaces": ["inhumument-editor", "inhumument-lib"]
+}

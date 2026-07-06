@@ -1,0 +1,5 @@
+# The Coolify image only COPYs dist/ and deploy/ — keep the ~275MB public/
+# duplicate and node_modules/ out of the docker build context.
+*
+!dist
+!deploy

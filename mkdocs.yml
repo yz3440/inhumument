@@ -1,0 +1,48 @@
+site_name: inhumument-lib
+site_description: The p5.js rendering layer for humument — Phillips-style erasure-poetry drawing over W. H. Mallock's A Human Document (1892)
+site_author: Yufeng Zhao
+site_url: https://yz3440.github.io/inhumument/
+
+repo_name: yz3440/inhumument
+repo_url: https://github.com/yz3440/inhumument
+
+theme:
+  name: terminal
+
+# Fail the build (under --strict) on broken internal links or anchors, and on
+# any doc left out of the nav. External links are not checked.
+validation:
+  nav:
+    omitted_files: warn
+    not_found: warn
+  links:
+    not_found: warn
+    anchors: warn
+    unrecognized_links: warn
+
+plugins:
+  - search
+
+markdown_extensions:
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - meta
+  - tables
+  - toc:
+      permalink: "#"
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+
+nav:
+  - Home: index.md
+  - Quick Start: quickstart.md
+  - Drawing API: api.md
+  - The Editor: editor.md
+  - Provenance & License: provenance.md
