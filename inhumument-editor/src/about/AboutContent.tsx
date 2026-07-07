@@ -92,7 +92,7 @@ export function AboutContent() {
         />
         <Lead>
           Pick a page in the dock. Write p5 against <Mono>H</Mono>. Save (per
-          page, in <Mono>localStorage</Mono>). Export as PNG. Iterate.
+          page, in <Mono>IndexedDB</Mono>). Export as PNG. Iterate.
         </Lead>
         <h3 className="mb-3 mt-8 text-[15px] font-semibold tracking-tight text-foreground">
           The four primitive families

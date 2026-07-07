@@ -26,7 +26,7 @@ export function SketchesTab() {
     const previous = sketch;
 
     setSketch(src);
-    saveSketch(page, src);
+    void saveSketch(page, src);
     bumpReload();
 
     if (previous && previous !== src) {
@@ -35,7 +35,7 @@ export function SketchesTab() {
           label: 'Undo',
           onClick: () => {
             setSketch(previous);
-            saveSketch(page, previous);
+            void saveSketch(page, previous);
             bumpReload();
           },
         },
@@ -68,8 +68,8 @@ export function SketchesTab() {
           ))}
         </ul>
         <div className="mt-4 border-t border-border-soft pt-3 text-[11.5px] leading-relaxed text-muted-foreground">
-          Sketches are saved per page in localStorage. Use Reset in the top bar to restore the
-          default for the current page.
+          Sketches are saved per page in your browser (IndexedDB). Use Reset in the top bar to
+          restore the default for the current page.
         </div>
       </div>
     </div>

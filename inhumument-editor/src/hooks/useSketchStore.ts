@@ -1,6 +1,5 @@
 import { create } from 'zustand';
 import {
-  loadFavorites,
   toggleFavorite as toggleFavoriteStorage,
   type FavoriteRef,
 } from '@/lib/favorites';
@@ -45,7 +44,7 @@ export interface SketchState {
   selectViewZoom: number;
   selectActualZoom: number;
 
-  /** User-favorited pages. Persisted to localStorage. */
+  /** User-favorited pages. Persisted to IndexedDB; hydrated on init. */
   favorites: FavoriteRef[];
 
   /** Word IDs in the current pending group (the user's "active" selection). */
@@ -81,6 +80,7 @@ export interface SketchState {
   commitGroup: () => void;
   clearSelection: () => void;
 
+  setFavorites: (f: FavoriteRef[]) => void;
   toggleFavorite: (page: number) => void;
 }
 
@@ -106,7 +106,7 @@ export const useSketchStore = create<SketchState>((set) => ({
   selectViewZoom: 1,
   selectActualZoom: 1,
 
-  favorites: loadFavorites(),
+  favorites: [],
 
   pendingIds: [],
   groupsIds: [],
@@ -175,8 +175,9 @@ export const useSketchStore = create<SketchState>((set) => ({
       };
     }),
 
+  setFavorites: (favorites) => set({ favorites }),
   toggleFavorite: (page) =>
-    set({ favorites: toggleFavoriteStorage(page) }),
+    set((s) => ({ favorites: toggleFavoriteStorage(s.favorites, page) })),
 }));
 
 function clampZoom(z: number): number {

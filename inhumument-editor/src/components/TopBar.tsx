@@ -102,8 +102,7 @@ export function TopBar() {
       <button
         type="button"
         onClick={() => {
-          saveSketch(page, sketch);
-          toast.success('Sketch saved');
+          void saveSketch(page, sketch).then(() => toast.success('Sketch saved'));
         }}
         title="Save (⌘S)"
         className={buttonClasses({ variant: 'outline', size: 'sm' })}
@@ -113,7 +112,7 @@ export function TopBar() {
       <button
         type="button"
         onClick={() => {
-          clearSketch(page);
+          void clearSketch(page);
           setSketch(defaultSketch);
           toast.message('Reset to default');
         }}

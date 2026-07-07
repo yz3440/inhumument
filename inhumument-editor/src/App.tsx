@@ -10,6 +10,7 @@ import { Console } from '@/components/Console';
 import { Toaster } from '@/components/ui/sonner';
 import { useHotkeys } from 'react-hotkeys-hook';
 import { loadSketch, saveSketch } from '@/lib/persist';
+import { loadFavorites } from '@/lib/favorites';
 import { setPageList as setLabelPages } from '@/lib/page-label';
 import { defaultSketch } from '@/starter-sketches';
 
@@ -42,10 +43,12 @@ export function App() {
   const commitGroup = useSketchStore((s) => s.commitGroup);
   const clearSelection = useSketchStore((s) => s.clearSelection);
   const toggleFavorite = useSketchStore((s) => s.toggleFavorite);
+  const setFavorites = useSketchStore((s) => s.setFavorites);
 
   useEffect(() => {
     (async () => {
       try {
+        setFavorites(await loadFavorites());
         await Humument.init();
         const pages = await Humument.catalog.listPages();
         setPageList(pages);
@@ -55,18 +58,23 @@ export function App() {
         console.error('DB init failed:', e);
       }
     })();
-  }, [setDbReady, setPageList]);
+  }, [setDbReady, setPageList, setFavorites]);
 
   useEffect(() => {
-    const saved = loadSketch(page);
-    setSketch(saved ?? defaultSketch);
+    let stale = false;
+    loadSketch(page).then((saved) => {
+      if (!stale) setSketch(saved ?? defaultSketch);
+    });
+    return () => {
+      stale = true;
+    };
   }, [page, setSketch]);
 
   // Cmd+/ deliberately NOT bound here so CodeMirror's toggleLineComment keeps
   // working in the editor; same for Cmd+D / Cmd+F.
   useHotkeys('mod+s', (e) => {
     e.preventDefault();
-    saveSketch(page, sketch);
+    void saveSketch(page, sketch);
   }, { enableOnContentEditable: true, enableOnFormTags: true }, [page, sketch]);
 
   useHotkeys('mod+enter', (e) => {
