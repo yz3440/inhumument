@@ -1,4 +1,5 @@
 import { BookOpen } from 'lucide-react';
+import { DOCS_URL } from '@/lib/site';
 
 export function ApiTab() {
   return (
@@ -13,7 +14,7 @@ export function ApiTab() {
         </div>
 
         <a
-          href="/docs.html"
+          href={DOCS_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 rounded-[var(--radius-md)] border border-border bg-muted/30 px-3 py-2 text-[12px] font-medium text-primary shadow-[var(--shadow-chrome)] transition-colors hover:bg-muted/50"

@@ -46,7 +46,7 @@
       "name": "inhumument-lib",
       "version": "0.1.0",
       "dependencies": {
-        "humument": "^0.1.0",
+        "humument": "^0.1.1",
       },
       "devDependencies": {
         "@types/p5": "^1.7.6",
@@ -426,7 +426,7 @@
 
     "html-void-elements": ["html-void-elements@3.0.0", "", {}, "sha512-bEqo66MRXsUGxWHV5IP0PUiAWwoEjba4VCzg0LjFJBpchPaTfyfCKTG6bc5F8ucKec3q5y6qOdGyYTSBEvhCrg=="],
 
-    "humument": ["humument@0.1.0", "", {}, "sha512-14HtnQqrPt8SutdDZjslJfOmzZdtxOily59r92S886Uy9X//i7b3h1N8DXJ5fq1KVtFLuV5HK/GQqBidNfrvrg=="],
+    "humument": ["humument@0.1.1", "", {}, "sha512-Uj4WkyAYE8IOBCU4x7d8CoK9KmJxb63Bp3uVu6vOAToYIOyeUNeQcdBSiCdE+0h1S5IxhPQPhiuhAnpf4Wv0GQ=="],
 
     "inhumument-editor": ["inhumument-editor@workspace:inhumument-editor"],
 

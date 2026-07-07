@@ -1,4 +1,5 @@
 import { AboutContent } from '@/about/AboutContent';
+import { DOCS_URL } from '@/lib/site';
 
 export function AboutLayout() {
   return (
@@ -10,7 +11,7 @@ export function AboutLayout() {
         <span className="text-muted-foreground">/</span>
         <span className="text-[11px] font-medium text-muted-foreground">about</span>
         <div className="flex-1" />
-        <a href="/docs.html" className="text-[11px] font-medium text-muted-foreground hover:text-foreground">
+        <a href={DOCS_URL} target="_blank" rel="noopener noreferrer" className="text-[11px] font-medium text-muted-foreground hover:text-foreground">
           Read docs
         </a>
         <a href="/" className="text-[11px] font-medium text-primary hover:underline">

@@ -5,6 +5,7 @@ import { toast } from 'sonner';
 import { defaultSketch } from '@/starter-sketches';
 import { printedPage } from '@/lib/page-label';
 import { buttonClasses } from '@/components/ui/button-classes';
+import { DOCS_URL } from '@/lib/site';
 import { cn } from '@/lib/utils';
 
 export function TopBar() {
@@ -59,14 +60,14 @@ export function TopBar() {
       </a>
 
       <a
-        href="/docs.html"
+        href={DOCS_URL}
         target="_blank"
         rel="noopener noreferrer"
         className={cn(
           'hidden sm:inline-flex items-center gap-1 rounded-[var(--radius-md)] px-2 py-1 text-[11px] font-medium',
           'text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors',
         )}
-        title="Open API documentation"
+        title="Open documentation"
       >
         <BookOpen className="size-3.5 shrink-0" />
         Docs

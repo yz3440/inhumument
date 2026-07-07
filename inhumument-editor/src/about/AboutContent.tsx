@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { DOCS_URL } from '@/lib/site';
 
 function AboutHeading({
   id,
@@ -142,7 +143,9 @@ export function AboutContent() {
             Get started in the editor
           </a>
           <a
-            href="/docs.html#getting-started"
+            href={`${DOCS_URL}quickstart/`}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center rounded-[var(--radius-md)] border border-border bg-background px-3 py-1.5 text-[12px] font-medium text-foreground hover:bg-muted/60 transition-colors"
           >
             Read the API docs
