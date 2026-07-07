@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="generator" content="mkdocs-1.6.1, mkdocs-terminal-4.8.0">
+    
+    <meta name="description" content="The p5.js rendering layer for humument — Phillips-style erasure-poetry drawing over W. H. Mallock's A Human Document (1892)"> 
+    
+    <meta name="author" content="Yufeng Zhao"> 
+    
+    <link rel="canonical" href="https://yz3440.github.io/inhumument/api/"><link rel="icon" type="image/png" sizes="192x192" href="../img/android-chrome-192x192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="../img/android-chrome-512x512.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png" />
+<link rel="shortcut icon" type="image/png" sizes="48x48" href="../img/favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png" />
+
+
+    
+ 
+<title>Drawing API - inhumument-lib</title>
+
+
+<link href="../css/fontawesome/css/fontawesome.min.css" rel="stylesheet">
+<link href="../css/fontawesome/css/solid.min.css" rel="stylesheet">
+<link href="../css/normalize.css" rel="stylesheet">
+<link href="../css/terminal.css" rel="stylesheet">
+<link href="../css/theme.css" rel="stylesheet">
+<link href="../css/theme.tile_grid.css" rel="stylesheet">
+<link href="../css/theme.footer.css" rel="stylesheet">
+<!-- default color palette -->
+<link href="../css/palettes/default.css" rel="stylesheet">
+
+<!-- page layout -->
+<style>
+/* initially set page layout to a one column grid */
+.terminal-mkdocs-main-grid {
+    display: grid;
+    grid-column-gap: 1.4em;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+}
+
+/*  
+*   when side navigation is not hidden, use a two column grid.  
+*   if the screen is too narrow, fall back to the initial one column grid layout.
+*   in this case the main content will be placed under the navigation panel. 
+*/
+@media only screen and (min-width: 70em) {
+    .terminal-mkdocs-main-grid {
+        grid-template-columns: 4fr 9fr;
+    }
+}</style>
+
+
+
+     
+    
+    
+
+    
+    <!-- search css support -->
+<link href="../css/search/bootstrap-modal.css" rel="stylesheet">
+<!-- search scripts -->
+<script>
+    var base_url = "..",
+    shortcuts = "{}";
+</script>
+<script src="../js/jquery/jquery-1.10.1.min.js" defer></script>
+<script src="../js/bootstrap/bootstrap.min.js" defer></script>
+<script src="../js/mkdocs/base.js" defer></script>
+    
+    
+    
+    
+    <script src="../search/main.js"></script>
+    
+
+    
+</head>
+
+<body class="terminal"><div class="container">
+    <div class="terminal-nav">
+        <header class="terminal-logo">
+            <div id="mkdocs-terminal-site-name" class="logo terminal-prompt"><a href="https://yz3440.github.io/inhumument/" class="no-style">inhumument-lib</a></div>
+        </header>
+        
+        <nav class="terminal-menu">
+            
+            <ul vocab="https://schema.org/" typeof="BreadcrumbList">
+                
+                
+                <li property="itemListElement" typeof="ListItem">
+                    <a href=".." class="menu-item " property="item" typeof="WebPage">
+                        <span property="name">Home</span>
+                    </a>
+                    <meta property="position" content="0">
+                </li>
+                
+                
+                <li property="itemListElement" typeof="ListItem">
+                    <a href="../quickstart/" class="menu-item " property="item" typeof="WebPage">
+                        <span property="name">Quick Start</span>
+                    </a>
+                    <meta property="position" content="1">
+                </li>
+                
+                
+                <li property="itemListElement" typeof="ListItem">
+                    <a href="./" class="menu-item active" property="item" typeof="WebPage">
+                        <span property="name">Drawing API</span>
+                    </a>
+                    <meta property="position" content="2">
+                </li>
+                
+                
+                <li property="itemListElement" typeof="ListItem">
+                    <a href="../editor/" class="menu-item " property="item" typeof="WebPage">
+                        <span property="name">The Editor</span>
+                    </a>
+                    <meta property="position" content="3">
+                </li>
+                
+                
+                <li property="itemListElement" typeof="ListItem">
+                    <a href="../provenance/" class="menu-item " property="item" typeof="WebPage">
+                        <span property="name">Provenance & License</span>
+                    </a>
+                    <meta property="position" content="4">
+                </li>
+                
+                    
+                    
+
+
+<li property="itemListElement" typeof="ListItem">
+    <a href="#" class="menu-item" data-toggle="modal" data-target="#mkdocs_search_modal" property="item" typeof="SearchAction">
+        <i aria-hidden="true" class="fa fa-search"></i> <span property="name">Search</span>
+    </a>
+    <meta property="position" content="5">
+</li>
+                    
+            </ul>
+            
+        </nav>
+    </div>
+</div>
+        
+    <div class="container">
+        <div class="terminal-mkdocs-main-grid"><aside id="terminal-mkdocs-side-panel"><nav>
+    <ul class="terminal-mkdocs-side-nav-items">
+        
+          <li class="terminal-mkdocs-side-nav-li">
+    
+    
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="..">Home</a>
+        
+    
+    
+    
+       </li>
+        
+          <li class="terminal-mkdocs-side-nav-li">
+    
+    
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../quickstart/">Quick Start</a>
+        
+    
+    
+    
+       </li>
+        
+          <li class="terminal-mkdocs-side-nav-li">
+    
+    
+    
+        
+        <span class="terminal-mkdocs-side-nav-item--active">Drawing API</span>
+    
+    
+    
+       </li>
+        
+          <li class="terminal-mkdocs-side-nav-li">
+    
+    
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../editor/">The Editor</a>
+        
+    
+    
+    
+       </li>
+        
+          <li class="terminal-mkdocs-side-nav-li">
+    
+    
+    
+        
+        
+            <a class="terminal-mkdocs-side-nav-item" href="../provenance/">Provenance & License</a>
+        
+    
+    
+    
+       </li>
+        
+    </ul>
+</nav><hr>
+<nav>
+    <ul>
+        <li><a href="#drawing-api">Drawing API</a></li>
+        <li><a href="#hpageimage">H.page.image</a></li><li><a href="#hdrawballoonwords-opts-p">H.draw.balloon(words, opts?, p?)</a></li><li><a href="#hdrawriversegment-opts-p">H.draw.river(segment, opts?, p?)</a></li><li><a href="#hdrawwordword-p">H.draw.word(word, p?)</a></li><li><a href="#hdrawimagep">H.draw.image(p?)</a></li><li><a href="#standalone-functions">Standalone functions</a></li><li><a href="#types">Types</a></li>
+    </ul>
+</nav>
+</aside>
+            <main id="terminal-mkdocs-main-content">
+<section id="mkdocs-terminal-content">
+    <h1 id="drawing-api">Drawing API<a class="headerlink" href="#drawing-api" title="Permanent link">#</a></h1>
+<p>Everything here is what <code>inhumument-lib</code> adds <strong>on top of</strong>
+<a href="https://yz3440.github.io/humument/"><code>humument</code></a>. The rest of the instance —
+<code>H.words</code>, <code>H.lines</code>, <code>H.selectChunks()</code>, <code>H.river.*</code>, <code>H.geom.*</code>, <code>H.bboxOf()</code>,
+<code>H.noise()</code>/<code>H.random()</code> — is <code>humument</code>'s and documented there.</p>
+<p>The helpers run in p5 <strong>global mode</strong> (pass nothing — they read the <code>window</code>
+p5 globals) or <strong>instance mode</strong> (pass the p5 instance as the last argument).</p>
+<h2 id="hpageimage"><code>H.page.image</code><a class="headerlink" href="#hpageimage" title="Permanent link">#</a></h2>
+<p>A writable slot on the loaded page:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nx">H.page.image</span><span class="o">:</span><span class="w"> </span><span class="kt">p5.Image</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">null</span><span class="w">   </span><span class="c1">// starts null</span>
+</code></pre></div>
+<p>The library <strong>never fills it</strong> — you assign it after loading the scan, then the
+<code>word</code>/<code>image</code> helpers below read it:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nx">H</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">loadImage</span><span class="p">(</span><span class="nx">H</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">imageUrl</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">redraw</span><span class="p">());</span>
+</code></pre></div>
+<p><code>H.page.imageUrl</code> (a plain string, from <code>humument</code>) is the source URL. Loading
+the image is always the host's job so the library stays renderer-agnostic under
+the hood.</p>
+<h2 id="hdrawballoonwords-opts-p"><code>H.draw.balloon(words, opts?, p?)</code><a class="headerlink" href="#hdrawballoonwords-opts-p" title="Permanent link">#</a></h2>
+<p>Draw a wobbly, hand-drawn balloon enclosing the bounding box of <code>words</code> (a
+<code>Word[]</code>, e.g. one phrase from <code>H.selectChunks()</code>).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">ph</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">H</span><span class="p">.</span><span class="nx">selectChunks</span><span class="p">({</span><span class="w"> </span><span class="nx">nSeeds</span><span class="o">:</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="nx">seed</span><span class="o">:</span><span class="w"> </span><span class="mf">42</span><span class="w"> </span><span class="p">}))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nx">fill</span><span class="p">(</span><span class="mf">255</span><span class="p">);</span><span class="w"> </span><span class="nx">stroke</span><span class="p">(</span><span class="mf">20</span><span class="p">);</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nx">H</span><span class="p">.</span><span class="nx">draw</span><span class="p">.</span><span class="nx">balloon</span><span class="p">(</span><span class="nx">ph</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">wobble</span><span class="o">:</span><span class="w"> </span><span class="mf">0.15</span><span class="w"> </span><span class="p">});</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">}</span>
+</code></pre></div>
+<p><code>opts</code> is <code>humument</code>'s <code>BalloonOptions</code>: <code>pad</code>, <code>wobble</code>, <code>wobbleFreq</code>,
+<code>samples</code>, <code>seed</code>. The boundary is drawn as a smooth Catmull-Rom curve, not a
+polygon. (For the raw point ring, use <code>H.geom.balloon(H.bboxOf(words), opts)</code>
+and draw it yourself.)</p>
+<h2 id="hdrawriversegment-opts-p"><code>H.draw.river(segment, opts?, p?)</code><a class="headerlink" href="#hdrawriversegment-opts-p" title="Permanent link">#</a></h2>
+<p>Draw a wavy ribbon along a river segment — the whitespace path between two
+words returned by <code>H.river.between(a, b)</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">seg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">H</span><span class="p">.</span><span class="nx">river</span><span class="p">.</span><span class="nx">between</span><span class="p">(</span><span class="nx">wordA</span><span class="p">,</span><span class="w"> </span><span class="nx">wordB</span><span class="p">);</span><span class="w"> </span><span class="c1">// ChannelSegment | null</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">seg</span><span class="p">)</span><span class="w"> </span><span class="nx">H</span><span class="p">.</span><span class="nx">draw</span><span class="p">.</span><span class="nx">river</span><span class="p">(</span><span class="nx">seg</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">halfWidth</span><span class="o">:</span><span class="w"> </span><span class="mf">5</span><span class="w"> </span><span class="p">});</span>
+</code></pre></div>
+<p><code>opts</code> is <code>humument</code>'s <code>ChannelOptions</code> (<code>halfWidth</code>, <code>jitter</code>, <code>meander</code>,
+<code>widthMod</code>, <code>seed</code>, …).</p>
+<h2 id="hdrawwordword-p"><code>H.draw.word(word, p?)</code><a class="headerlink" href="#hdrawwordword-p" title="Permanent link">#</a></h2>
+<p>Re-stamp one word's <strong>original pixels</strong> crisply — the classic "kept word stays
+sharp while everything else is painted over" effect. Crops <code>H.page.image</code> at the
+word's bbox and blits it back at the same coordinates. Needs <code>H.page.image</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">const</span><span class="w"> </span><span class="nx">w</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nx">phrase</span><span class="p">)</span><span class="w"> </span><span class="nx">H</span><span class="p">.</span><span class="nx">draw</span><span class="p">.</span><span class="nx">word</span><span class="p">(</span><span class="nx">w</span><span class="p">);</span>
+</code></pre></div>
+<h2 id="hdrawimagep"><code>H.draw.image(p?)</code><a class="headerlink" href="#hdrawimagep" title="Permanent link">#</a></h2>
+<p>Blit the full page scan at native resolution (equivalent to
+<code>image(H.page.image, 0, 0)</code>). Needs <code>H.page.image</code>.</p>
+<h2 id="standalone-functions">Standalone functions<a class="headerlink" href="#standalone-functions" title="Permanent link">#</a></h2>
+<p>The same helpers are exported as plain functions, for when you don't want the
+<code>H.draw.*</code> namespace:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">drawBalloon</span><span class="p">,</span><span class="w"> </span><span class="nx">drawRiver</span><span class="p">,</span><span class="w"> </span><span class="nx">drawWord</span><span class="p">,</span><span class="w"> </span><span class="nx">drawImage</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;inhumument-lib&#39;</span><span class="p">;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nx">drawBalloon</span><span class="p">(</span><span class="nx">H</span><span class="p">,</span><span class="w"> </span><span class="nx">words</span><span class="p">,</span><span class="w"> </span><span class="nx">opts</span><span class="p">,</span><span class="w"> </span><span class="nx">p</span><span class="p">);</span><span class="w">      </span><span class="c1">// p optional (instance mode)</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nx">drawRiver</span><span class="p">(</span><span class="nx">H</span><span class="p">,</span><span class="w"> </span><span class="nx">segment</span><span class="p">,</span><span class="w"> </span><span class="nx">opts</span><span class="p">,</span><span class="w"> </span><span class="nx">p</span><span class="p">);</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="nx">drawWord</span><span class="p">(</span><span class="nx">H</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">image</span><span class="p">,</span><span class="w"> </span><span class="nx">word</span><span class="p">,</span><span class="w"> </span><span class="nx">p</span><span class="p">);</span><span class="w">     </span><span class="c1">// takes the image directly</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="nx">drawImage</span><span class="p">(</span><span class="nx">H</span><span class="p">.</span><span class="nx">page</span><span class="p">.</span><span class="nx">image</span><span class="p">,</span><span class="w"> </span><span class="nx">p</span><span class="p">);</span>
+</code></pre></div>
+<h2 id="types">Types<a class="headerlink" href="#types" title="Permanent link">#</a></h2>
+<p><code>inhumument-lib</code> re-exports every <code>humument</code> type (<code>Word</code>, <code>Gutter</code>, <code>Dock</code>,
+<code>ChannelSegment</code>, <code>BalloonOptions</code>, <code>ChannelOptions</code>, <code>Pt</code>, <code>Bbox</code>, …) and adds:</p>
+<ul>
+<li><code>InhumumentInstance</code> — the loaded page: <code>humument</code>'s <code>HumumentInstance</code> plus
+  <code>page.image: p5.Image | null</code> and the <code>draw</code> namespace.</li>
+<li><code>DrawAPI</code> — the shape of <code>H.draw</code>.</li>
+</ul>
+</section>
+
+            </main>
+        </div>
+        <hr><footer>
+    <div class="terminal-mkdocs-footer-grid">
+        <div id="terminal-mkdocs-footer-copyright-info">
+             Site built with <a href="http://www.mkdocs.org">MkDocs</a> and <a href="https://github.com/ntno/mkdocs-terminal">Terminal for MkDocs</a>.
+        </div>
+    </div>
+</footer>
+    </div>
+
+    
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="alertdialog" aria-modal="true" aria-labelledby="searchModalLabel">
+    <div class="modal-dialog modal-lg" role="search">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="searchModalLabel">Search</h5>
+                <button type="button" class="close btn btn-default btn-ghost" data-dismiss="modal" aria-label="Close">x</button>
+            </div>
+            <div class="modal-body">
+                <p id="searchInputLabel">Type to start searching</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" aria-labelledby="searchInputLabel" placeholder="" id="mkdocs-search-query" title="Please enter search terms here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No document matches found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</body>
+
+</html>
